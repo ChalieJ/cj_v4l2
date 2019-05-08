@@ -8,9 +8,14 @@ class camChipFCB8530 : public camChip
 {
 public:
 	int init();
+	int open_device();
+	int queryCap(struct v4l2_capability *cap);
 
+private:
 	unsigned int x;
 	unsigned int y;
+
+	int fd;
 };
 
 #endif //__CAMCHIPFCB8530_H__

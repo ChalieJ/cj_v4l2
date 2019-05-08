@@ -1,17 +1,23 @@
 #include <iostream>
 #include <stdio.h>
 
+// shared pointer
+#include <memory>
+
 #include "cam.h"
 #include "camChipFCB8530.h"
 
 main()
 {
-	/* add optaiom chip select */
-	camChip *chip = new camChipFCB8530();
-	chip->init();
+	int ret = 0;
 
-	cam *mainCam = new cam(chip);
-	
+	/* add optaion chip select */
+	std::shared_ptr<camChip> chip(new camChipFCB8530());
+
+	std::shared_ptr<cam> mainCam(new cam(chip));
+
+	ret = mainCam->open();
+
 	return 0;
 }
 
